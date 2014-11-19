@@ -132,25 +132,29 @@
                 parentElement = this.domNode.parentElement;
                 delay = this.delay;
                 setTimeout(function () {
-                    tdNodeList = domQuery('td.has-error', parentElement);
+                    tdNodeList = domQuery('td div.alert.alert-danger', parentElement);
                     // If there a validation error was found, take the first one.
                     if (tdNodeList.length > 0) {
-                        node = tdNodeList[0];                    
-                        // Find all collapsed groupboxes, expand the groupbox if the node is a descendant of the groupbox.
-                        domQuery('.mx-groupbox.mx-groupbox-collapsable.collapsed', parentElement).forEach(function (groupboxElement) {
-                            if (dom.isDescendant(node, groupboxElement)) {
-                                domQuery('h2.mx-groupbox-header', groupboxElement).forEach(function (headerElement) {
-                                    headerElement.click();
-                                });
+                        // We got the div with the error message but we need the parent. 
+                        node = tdNodeList[0].parentElement;                    
+                        // The parent must be a td. It is difficult to find the input element related to the error if not contained in a table cell.
+                        if (node.nodeName === 'TD') { 
+                            // Find all collapsed groupboxes, expand the groupbox if the node is a descendant of the groupbox.
+                            domQuery('.mx-groupbox.mx-groupbox-collapsable.collapsed', parentElement).forEach(function (groupboxElement) {
+                                if (dom.isDescendant(node, groupboxElement)) {
+                                    domQuery('h2.mx-groupbox-header', groupboxElement).forEach(function (headerElement) {
+                                        headerElement.click();
+                                    });
+                                }
+                            });
+                            // Scroll element into view
+                            win.scrollIntoView(node);
+                            // Find any input or select elements in the node and set the focus if found.
+                            // (Note that an error could be displayed on a read only element.)
+                            inputNodeList = domQuery('input, select', node);
+                            if (inputNodeList.length > 0) {
+                                inputNodeList[0].focus();
                             }
-                        });
-                        // Scroll element into view
-                        win.scrollIntoView(node);
-                        // Find any input or select elements in the node and set the focus if found.
-                        // (Note that an error could be displayed on a read only element.)
-                        inputNodeList = domQuery('input, select', node);
-                        if (inputNodeList.length > 0) {
-                            inputNodeList[0].focus();
                         }
                     }
                 }, delay);

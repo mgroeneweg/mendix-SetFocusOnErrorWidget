@@ -16,6 +16,8 @@ Large pages or pages with many input elements. When validation fails, it is imme
 ##Features And Limitations
 Reposition the page to show validation errors. Expand groupboxes if necessary.
 
+The input element must be in a table cell.
+
 As of the first release, this widget does not work with tab containers. There is an issue with tab containers, ticket 204322. In some situations the error messages are shown in a popup unless the user actually visited the tabs. As soon as this issue is solved, the widget can be enhanced to show the tab which has validation error(s) on its input elements. 
 
 ##Installation
