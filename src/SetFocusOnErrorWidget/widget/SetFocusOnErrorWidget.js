@@ -102,7 +102,7 @@
                 }
             },
 
-            unintialize: function () {
+            uninitialize: function () {
                 if (this._validationHandle) {
                     mx.data.unsubscribe(this._validationHandle);
                 }
