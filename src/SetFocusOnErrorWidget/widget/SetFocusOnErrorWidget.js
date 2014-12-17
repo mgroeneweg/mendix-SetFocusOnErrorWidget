@@ -1,5 +1,5 @@
 /*jslint white: true nomen: true plusplus: true */
-/*global mx, mxui, mendix, declare, require, console, define, module */
+/*global mx, mxui, mendix, require, console, define, module */
 /**
 
 	SetFocusOnErrorWidget
@@ -23,16 +23,14 @@
 
     require([
 
-        'mxui/widget/_WidgetBase', 'mxui/mixin/_ValidationHelper', 'dijit/_Widget', 
-        'mxui/dom', 'dojo/dom', 'dojo/query', 'dojo/dom-class', 'dojo/on', 'dojo/window'
+        'mxui/widget/_WidgetBase', 'mxui/mixin/_ValidationHelper', 'dijit/_Widget', 'dojo/_base/declare', 
+        'mxui/dom', 'dojo/dom', 'dojo/query', 'dojo/dom-class', 'dojo/on', 'dojo/window',
+        'dojo/domReady!'
 
-    ], function (_WidgetBase, _ValidationHelper, _Widget, domMx, dom, domQuery, domClass, on, win) {
-
-        // Provide widget.
-        dojo.provide('SetFocusOnErrorWidget.widget.SetFocusOnErrorWidget');
+    ], function (_WidgetBase, _ValidationHelper, _Widget, declare, domMx, dom, domQuery, domClass, on, win) {
 
         // Declare widget.
-        return dojo.declare('SetFocusOnErrorWidget.widget.SetFocusOnErrorWidget', [ _WidgetBase, _Widget ], {
+        return declare('SetFocusOnErrorWidget.widget.SetFocusOnErrorWidget', [ _WidgetBase, _Widget ], {
 
             /**
              * Internal variables.
