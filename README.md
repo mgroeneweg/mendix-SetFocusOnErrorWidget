@@ -1,5 +1,5 @@
-mendix-SetFocusOnErrorWidget
-==============================
+Set focus on error widget
+=========================
 
 Set the focus on the input widget that has an error.
 
