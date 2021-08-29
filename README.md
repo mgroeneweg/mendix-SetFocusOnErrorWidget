@@ -16,15 +16,10 @@ Large pages or pages with many input elements. When validation fails, it is imme
 ##Features And Limitations
 Reposition the page to show validation errors. Expand groupboxes if necessary.
 
-The input element must be in a table cell.
-
-As of the first release, this widget does not work with tab containers. There is an issue with tab containers, ticket 204322. In some situations the error messages are shown in a popup unless the user actually visited the tabs. As soon as this issue is solved, the widget can be enhanced to show the tab which has validation error(s) on its input elements. 
+This widget does not work with tab containers unless the validation error is shown on the currently active tab.  
 
 ##Installation
 Normal installation using the App Store.
-
-##Dependencies
-Mendix 5 Environment. I tested with Mendix 5.9.1.
  
 ##Configuration
 In the designer, place this widget in the topmost dataview of the page. 

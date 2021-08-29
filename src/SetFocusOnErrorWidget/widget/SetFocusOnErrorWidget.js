@@ -23,11 +23,11 @@
 
     require([
 
-        'mxui/widget/_WidgetBase', 'mxui/mixin/_ValidationHelper', 'dijit/_Widget', 'dojo/_base/declare', 
+        'mxui/widget/_WidgetBase', 'dijit/_Widget', 'dojo/_base/declare', 
         'mxui/dom', 'dojo/dom', 'dojo/query', 'dojo/dom-class', 'dojo/on', 'dojo/window',
         'dojo/domReady!'
 
-    ], function (_WidgetBase, _ValidationHelper, _Widget, declare, domMx, dom, domQuery, domClass, on, win) {
+    ], function (_WidgetBase, _Widget, declare, domMx, dom, domQuery, domClass, on, win) {
 
         // Declare widget.
         return declare('SetFocusOnErrorWidget.widget.SetFocusOnErrorWidget', [ _WidgetBase, _Widget ], {
@@ -130,11 +130,11 @@
                 parentElement = this.domNode.parentElement;
                 delay = this.delay;
                 setTimeout(function () {
-                    tdNodeList = domQuery('td div.alert.alert-danger', parentElement);
+                    tdNodeList = domQuery('div.has-error', parentElement);
                     // If there a validation error was found, take the first one.
                     if (tdNodeList.length > 0) {
                         // We got the div with the error message but we need the parent. 
-                        node = tdNodeList[0].parentElement;                    
+                        node = tdNodeList[0];                    
                         // Find all collapsed groupboxes, expand the groupbox if the node is a descendant of the groupbox.
                         domQuery('.mx-groupbox.mx-groupbox-collapsible.collapsed', parentElement).forEach(function (groupboxElement) {
                             if (dom.isDescendant(node, groupboxElement)) {
